@@ -35,7 +35,7 @@ else
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "FuStudy_API");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlacklistIptables");
         c.RoutePrefix = "";
         c.EnableTryItOutByDefault();
     });
