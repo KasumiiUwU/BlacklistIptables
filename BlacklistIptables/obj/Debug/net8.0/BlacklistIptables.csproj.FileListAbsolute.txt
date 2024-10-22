@@ -34,3 +34,4 @@ D:\dotnet\BlacklistIPtables\BlacklistIptables\obj\Debug\net8.0\refint\BlacklistI
 D:\dotnet\BlacklistIPtables\BlacklistIptables\obj\Debug\net8.0\BlacklistIptables.pdb
 D:\dotnet\BlacklistIPtables\BlacklistIptables\obj\Debug\net8.0\BlacklistIptables.genruntimeconfig.cache
 D:\dotnet\BlacklistIPtables\BlacklistIptables\obj\Debug\net8.0\ref\BlacklistIptables.dll
+D:\dotnet\BlacklistIPtables\BlacklistIptables\obj\Debug\net8.0\BlacklistIptables.sourcelink.json

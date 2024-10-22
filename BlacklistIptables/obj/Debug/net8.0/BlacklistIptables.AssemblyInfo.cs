@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlacklistIptables")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6de8c85e3fb7675e9f1862ce17df3cf2fff323b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlacklistIptables")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlacklistIptables")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
