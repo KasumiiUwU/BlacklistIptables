@@ -363,16 +363,9 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-FuStudy_API/obj/
-FuStudy_API/bin/
-FuStudy_Model/obj/
-FuStudy_Model/bin/
-FuStudy_Repository/obj/
-FuStudy_Repository/bin/
-FuStudy_Service/obj/
-FuStudy_Service/bin/
-Tools/obj/
-Tools/bin/
+BlacklistIptables/obj/
+BlacklistIptables/bin/
+
 
 # idea - generate code
 .idea/
@@ -380,5 +373,3 @@ Tools/bin/
 # store - generate code
 .store/
 
-# migrations - generate code
-./FuStudy_API/Migrations/
