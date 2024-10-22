@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IpTableServiceInterface, IPtablesService>();
+builder.WebHost.UseUrls("http://*:5000");
 
 //Build CORS
 builder.Services.AddCors(opts =>
@@ -23,7 +24,6 @@ builder.Services.AddCors(opts =>
 });
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -42,7 +42,6 @@ else
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 app.UseCors("corspolicy");
 app.MapControllers();
