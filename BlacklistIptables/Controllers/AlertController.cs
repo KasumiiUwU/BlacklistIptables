@@ -49,7 +49,7 @@ public class AlertController : BaseController
         var result = _ipPtablesService.DeteleBlacklistRule(alert.Ip);
         if (result)
         {
-            return CustomResult($"IP {alert.Ip} has been successfully blacklisted.");
+            return CustomResult($"IP {alert.Ip} has been successfully remove from blacklisted.");
         }
         
         return StatusCode(500, "Failed to update iptables.");
