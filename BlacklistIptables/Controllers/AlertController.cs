@@ -29,7 +29,7 @@ public class AlertController : BaseController
         Console.WriteLine(alert.Ip);
         if (!IPAddress.TryParse(alert.Ip, out var ipAddress))
         {
-            return CustomResult("Invalid IP address.", HttpStatusCode.BadRequest);
+            return CustomResult($"Invalid IP address. {alert.Ip}", HttpStatusCode.BadRequest);
         }
 
         var result = _ipPtablesService.BlockIpWithIptables(alert.Ip);
