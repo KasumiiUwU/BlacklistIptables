@@ -25,6 +25,8 @@ public class AlertController : BaseController
     [HttpPost("BlacklistIp")]
     public async Task<IActionResult> BlacklistIp([FromBody] AlertData alert)
     {
+        
+        Console.WriteLine(alert.Ip);
         if (!IPAddress.TryParse(alert.Ip, out var ipAddress))
         {
             return CustomResult("Invalid IP address.", HttpStatusCode.BadRequest);
@@ -36,7 +38,7 @@ public class AlertController : BaseController
             return CustomResult($"IP {alert.Ip} has been successfully blacklisted.");
         }
 
-        return StatusCode(500, "Failed to update iptables.");
+        return CustomResult( "Failed to update iptables.", HttpStatusCode.InternalServerError);
     }
 
     [HttpPost("DeleteBlacklistIp")]
@@ -52,7 +54,7 @@ public class AlertController : BaseController
             return CustomResult($"IP {alert.Ip} has been successfully remove from blacklisted.");
         }
         
-        return StatusCode(500, "Failed to update iptables.");
+        return CustomResult( "Failed to update iptables.", HttpStatusCode.InternalServerError);
     }
     
     
