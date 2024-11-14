@@ -14,11 +14,11 @@ namespace BlacklistIptables.Controllers;
 [Controller]
 public class AlertController : BaseController
 {
-    private readonly IpTableServiceInterface _ipPtablesService;
+    private readonly IpTableServiceInterface _iptablesService;
 
-    public AlertController(IpTableServiceInterface ipPtablesService)
+    public AlertController(IpTableServiceInterface iptablesService)
     {
-        _ipPtablesService = ipPtablesService;
+        _iptablesService = iptablesService;
     }
 
 
@@ -32,12 +32,12 @@ public class AlertController : BaseController
             return CustomResult($"Invalid IP address. {alert.Ip}", HttpStatusCode.BadRequest);
         }
 
-        if (!_ipPtablesService.IsIpBlacklisted(alert.Ip))
+        if (!_iptablesService.IsIpBlacklisted(alert.Ip))
         {
             return CustomResult("IP is already blacklisted!", HttpStatusCode.BadRequest);
         }
         
-        var result = _ipPtablesService.BlockIpWithIptables(alert.Ip);
+        var result = _iptablesService.BlockIpWithIptables(alert.Ip);
         if (result)
         {
             return CustomResult($"IP {alert.Ip} has been successfully blacklisted.");
@@ -54,7 +54,7 @@ public class AlertController : BaseController
             return CustomResult("Invalid IP address.", HttpStatusCode.BadRequest);
         }
 
-        var result = _ipPtablesService.DeleteBlacklistRule(alert.Ip);
+        var result = _iptablesService.DeleteBlacklistRule(alert.Ip);
         if (result)
         {
             return CustomResult($"IP {alert.Ip} has been successfully remove from blacklisted.");
