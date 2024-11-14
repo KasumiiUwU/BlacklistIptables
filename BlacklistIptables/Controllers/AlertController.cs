@@ -32,6 +32,11 @@ public class AlertController : BaseController
             return CustomResult($"Invalid IP address. {alert.Ip}", HttpStatusCode.BadRequest);
         }
 
+        if (!_ipPtablesService.IsIpBlacklisted(alert.Ip))
+        {
+            return CustomResult("IP is already blacklisted!", HttpStatusCode.BadRequest);
+        }
+        
         var result = _ipPtablesService.BlockIpWithIptables(alert.Ip);
         if (result)
         {
@@ -49,10 +54,6 @@ public class AlertController : BaseController
             return CustomResult("Invalid IP address.", HttpStatusCode.BadRequest);
         }
 
-        if (!_ipPtablesService.IsIpBlacklisted(alert.Ip))
-        {
-            return CustomResult("IP is already blacklisted!", HttpStatusCode.BadRequest);
-        }
         var result = _ipPtablesService.DeleteBlacklistRule(alert.Ip);
         if (result)
         {
