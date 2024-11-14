@@ -48,7 +48,12 @@ public class AlertController : BaseController
         {
             return CustomResult("Invalid IP address.", HttpStatusCode.BadRequest);
         }
-        var result = _ipPtablesService.DeteleBlacklistRule(alert.Ip);
+
+        if (!_ipPtablesService.IsIpBlacklisted(alert.Ip))
+        {
+            return CustomResult("IP is already blacklisted!", HttpStatusCode.BadRequest);
+        }
+        var result = _ipPtablesService.DeleteBlacklistRule(alert.Ip);
         if (result)
         {
             return CustomResult($"IP {alert.Ip} has been successfully remove from blacklisted.");

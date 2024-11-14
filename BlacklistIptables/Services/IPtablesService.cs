@@ -17,11 +17,9 @@ public class IPtablesService : IpTableServiceInterface
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-            using (var process = Process.Start(startInfo))
-            {
-                process.WaitForExit();
-                return process.ExitCode == 0;
-            }
+            using var process = Process.Start(startInfo);
+            process.WaitForExit();
+            return process.ExitCode == 0;
         }
         catch (Exception e)
         {
@@ -30,7 +28,7 @@ public class IPtablesService : IpTableServiceInterface
         }
     }
 
-    public bool DeteleBlacklistRule(string ip)
+    public bool DeleteBlacklistRule(string ip)
     {
         try
         {
@@ -42,16 +40,38 @@ public class IPtablesService : IpTableServiceInterface
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-            using (var process = Process.Start(startInfo))
-            {
-                process.WaitForExit();
-                return process.ExitCode == 0;
-            }
+            using var process = Process.Start(startInfo);
+            process.WaitForExit();
+            return process.ExitCode == 0;
         }
         catch (Exception e)
         {
             // Log exception details here using preferred logging method
             return false;
         }
+    }
+
+    public bool IsIpBlacklisted(string ip)
+    {
+        try
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "/bin/bash",
+                Arguments = $"-c \"sudo iptables -C INPUT -s {ip} -j DROP\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            //var process = ExecuteIptablesCommand($"-C INPUT -s {ip} -j DROP");
+            using var process = Process.Start(startInfo);
+            process.WaitForExit();
+            return process.ExitCode == 0;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+       
     }
 }
