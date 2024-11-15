@@ -60,6 +60,7 @@ public class IPtablesService : IpTableServiceInterface
                 FileName = "/bin/bash",
                 Arguments = $"-c \"sudo iptables -C INPUT -s {ip} -j DROP\"",
                 RedirectStandardOutput = true,
+                RedirectStandardError = true, // Ensure standard error is redirected
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
@@ -74,7 +75,7 @@ public class IPtablesService : IpTableServiceInterface
             Console.WriteLine($"Output: {output}");
             Console.WriteLine($"Error: {error}");
             
-            if (error.Contains("Bad rule"))
+            if (process.ExitCode != 0 && error.Contains("Bad rule"))
             {
                 return false;
             }
