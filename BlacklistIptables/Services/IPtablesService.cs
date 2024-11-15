@@ -84,7 +84,7 @@ public class IPtablesService : IpTableServiceInterface
         catch (Exception e)
         {
             Console.WriteLine($"Exception occurred while checking IP blacklist status: {e.Message}");
-            return false;
+            return true;
         }
        
     }
