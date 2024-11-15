@@ -66,10 +66,24 @@ public class IPtablesService : IpTableServiceInterface
             //var process = ExecuteIptablesCommand($"-C INPUT -s {ip} -j DROP");
             using var process = Process.Start(startInfo);
             process.WaitForExit();
+            
+            var output = process.StandardOutput.ReadToEnd();
+            var error = process.StandardError.ReadToEnd();
+
+            // Log output and error for debugging purposes (or handle them as needed)
+            Console.WriteLine($"Output: {output}");
+            Console.WriteLine($"Error: {error}");
+            
+            if (error.Contains("Bad rule"))
+            {
+                return false;
+            }
+            
             return process.ExitCode == 0;
         }
         catch (Exception e)
         {
+            Console.WriteLine($"Exception occurred while checking IP blacklist status: {e.Message}");
             return false;
         }
        

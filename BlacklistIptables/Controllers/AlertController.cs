@@ -32,7 +32,7 @@ public class AlertController : BaseController
             return CustomResult($"Invalid IP address. {alert.Ip}", HttpStatusCode.BadRequest);
         }
 
-        if (!_iptablesService.IsIpBlacklisted(alert.Ip))
+        if (_iptablesService.IsIpBlacklisted(alert.Ip))
         {
             return CustomResult("IP is already blacklisted!", HttpStatusCode.BadRequest);
         }
